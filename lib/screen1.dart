@@ -6,6 +6,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: Icon(Icons.menu),
@@ -28,7 +29,9 @@ class Home extends StatelessWidget {
           SizedBox(width: 20),
         ],
       ),
-      body: Column(
+      body:
+
+      Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
