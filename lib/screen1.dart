@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gsg/Widgets/FreelancersWidget.dart';
 import 'package:flutter_gsg/Widgets/SectionWidget.dart';
+import 'package:flutter_gsg/Widgets/ServicesWidget.dart';
 
 
 class Home extends StatelessWidget {
@@ -61,16 +62,23 @@ class Home extends StatelessWidget {
                     ),
                   ),
                 ),
-        
+
                 Padding(
-                  padding: const EdgeInsets.only(right: 16, top: 18, bottom: 16),
+                  padding: const EdgeInsets.only(
+                    right: 16,
+                    top: 18,
+                    bottom: 16,
+                  ),
                   child: Container(
-                    padding: EdgeInsets.all(14),
+                    padding: EdgeInsets.all(4),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(14)),
                       border: Border.all(color: Colors.grey, width: 1),
                     ),
-                    child: Image.asset("assets/sort.png"),
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: Image.asset("assets/sort.png"),
+                    ),
                   ),
                 ),
               ],
@@ -112,11 +120,12 @@ class Home extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.only(top: 15),
                           child: Container(
-                            height: 30,
                             padding: EdgeInsets.only(right: 10),
-        
+                            height: 30,
+
                             decoration: BoxDecoration(color: Colors.black),
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 TextButton(
                                   onPressed: () {},
@@ -132,8 +141,8 @@ class Home extends StatelessWidget {
                                 ),
                                 Icon(
                                   Icons.arrow_forward,
-                                  color: Colors.white,
                                   size: 14,
+                                  color: Colors.white,
                                 ),
                               ],
                             ),
@@ -141,44 +150,82 @@ class Home extends StatelessWidget {
                         ),
                       ],
                     ),
-        
+
                     Image.asset("assets/person.png"),
                   ],
                 ),
               ),
             ),
             SectionWidget(title: "Top Rated Freelancers"),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Freelancer(
-                  name: "Mary",
-                  title: "Engineer",
-                  rate: "5",
-                  imagePath: "assets/person2.png",
-                ),
-                Freelancer(
-                  name: "Kamel",
-                  title: "Engineer",
-                  rate: "4.9",
-                  imagePath: "assets/person2.png",
-                ),
-                Freelancer(
-                  name: "Isaac",
-                  title: "Doctor",
-                  rate: "3",
-                  imagePath: "assets/person2.png",
-                ),
-                Freelancer(
-                  name: "Meera",
-                  title: "Nurse",
-                 rate: "5.0",
-                  imagePath: "assets/person2.png",
-                ),
-
-              ],
+            SingleChildScrollView(
+              clipBehavior: Clip.none,
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Freelancer(
+                    name: "Mary",
+                    title: "Engineer",
+                    rate: "5",
+                    imagePath: "assets/person2.png",
+                  ),
+                  Freelancer(
+                    name: "Mary",
+                    title: "Engineer",
+                    rate: "5",
+                    imagePath: "assets/person2.png",
+                  ),
+                  Freelancer(
+                    name: "Kamel",
+                    title: "Engineer",
+                    rate: "4.9",
+                    imagePath: "assets/person2.png",
+                  ),
+                  Freelancer(
+                    name: "Isaac",
+                    title: "Doctor",
+                    rate: "3",
+                    imagePath: "assets/person2.png",
+                  ),
+                  Freelancer(
+                    name: "Meera",
+                    title: "Nurse",
+                    rate: "5.0",
+                    imagePath: "assets/person2.png",
+                  ),
+                ],
+              ),
             ),
             SectionWidget(title: "Top Services"),
+           Column(
+             children: [
+               ServicesWidget(
+                 jobTitle: "Software Engineer",
+                 rate: "5.0",
+                 bio: "I Like Mobile Developing Using Flutter",
+                 name: "Mariam Eqdaih",
+                 avatar: "assets/avatar.png",
+                 imageURL: "assets/img1.png",
+               ),
+               ServicesWidget(
+                 avatar: "assets/avatar.png",
+                 imageURL: "assets/img2.png",
+                 jobTitle: "Nurse",
+                 bio: "I love Helping People",
+                 name: "Huda Mustafa",
+                 rate: "3.9"
+               ),
+
+               ServicesWidget(
+                   avatar: "assets/avatar.png",
+                   imageURL: "assets/img3.png",
+                   jobTitle: "Musician",
+                   bio: "I like Music So Much",
+                   name: "Basem Moh",
+                   rate: "4.0"
+               ),
+             ],
+           )
 
           ],
         ),

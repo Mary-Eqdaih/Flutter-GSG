@@ -6,7 +6,7 @@ class Rating extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(5),
+      padding: const EdgeInsets.only(top: 5),
       child: Container(
       width: 50,
         padding: EdgeInsets.all(5),

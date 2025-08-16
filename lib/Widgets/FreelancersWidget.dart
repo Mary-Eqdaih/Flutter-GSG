@@ -17,26 +17,36 @@ class Freelancer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10),
-      child: Column(
+      padding: const EdgeInsets.only(top: 10, bottom: 80, left: 15, right: 15),
+      child: Stack(
+        clipBehavior: Clip.none,
         children: [
           CircleAvatar(backgroundImage: AssetImage(imagePath), radius: 35),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
-            child: Column(
-              children: [
-                Text(name, style: TextStyle(fontSize: 12, color: Colors.grey)),
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: Color(0xff1D1F24),
+          Positioned(
+            bottom: -60,
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Column(
+                children: [
+                  Text(
+                    name,
+                    style: TextStyle(fontSize: 12, color: Colors.grey),
                   ),
-                ),
-                Rating(rate: rate),
-              ],
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: Color(0xff1D1F24),
+                    ),
+                  ),
+                  Rating(rate: rate),
+                ],
+              ),
             ),
           ),
         ],
