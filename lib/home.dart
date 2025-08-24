@@ -3,39 +3,39 @@ import 'package:flutter_gsg/Widgets/FreelancersWidget.dart';
 import 'package:flutter_gsg/Widgets/SectionWidget.dart';
 import 'package:flutter_gsg/Widgets/ServicesWidget.dart';
 
+import 'Routes/routes.dart';
 
 class Home extends StatelessWidget {
-  const Home({super.key});
-
+  const Home( {super.key, this.email});
+  final String? email;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: Icon(Icons.menu),
+        // leading: IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.menu),),
         title: Image.asset("assets/logo.png"),
         actions: [
-          Image.asset("assets/bell.png"),
-          SizedBox(width: 20),
-          Container(
-            width: 44,
-            height: 44,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Color.fromRGBO(30, 54, 114, 0.12),
-              image: DecorationImage(
-                image: AssetImage("assets/shopping-cart.png"),
-              ),
-            ),
+          IconButton(onPressed: () {}, icon: Image.asset("assets/bell.png")),
+
+          IconButton(
+            onPressed: () {},
+            icon: Image.asset("assets/shopping-cart.png"),
           ),
-          SizedBox(width: 20),
+
+          IconButton(
+            onPressed: () {
+              Navigator.pushReplacementNamed(context, Routes.signIn);
+            },
+            icon: Icon(Icons.logout),
+          ),
         ],
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
+            Text("Hello ${email ?? 'guest '}"),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -47,6 +47,7 @@ class Home extends StatelessWidget {
                       bottom: 16,
                       left: 16,
                     ),
+
                     child: TextField(
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.search),
@@ -197,35 +198,39 @@ class Home extends StatelessWidget {
               ),
             ),
             SectionWidget(title: "Top Services"),
-           Column(
-             children: [
-               ServicesWidget(
-                 jobTitle: "Software Engineer",
-                 rate: "5.0",
-                 bio: "I Like Mobile Developing Using Flutter",
-                 name: "Mariam Eqdaih",
-                 avatar: "assets/avatar.png",
-                 imageURL: "assets/img1.png",
-               ),
-               ServicesWidget(
-                 avatar: "assets/avatar.png",
-                 imageURL: "assets/img2.png",
-                 jobTitle: "Nurse",
-                 bio: "I love Helping People",
-                 name: "Huda Mustafa",
-                 rate: "3.9"
-               ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: Column(
+                children: [
+                  ServicesWidget(
+                    jobTitle: "Software Engineer",
+                    rate: "5.0",
+                    bio: "I Like Mobile Developing Using Flutter",
+                    name: "Mariam Eqdaih",
+                    avatar: "assets/avatar.png",
+                    imageURL: "assets/img1.png",
+                  ),
+                  ServicesWidget(
+                    avatar: "assets/avatar.png",
+                    imageURL: "assets/img2.png",
+                    jobTitle: "Nurse",
+                    bio: "I love Helping People",
+                    name: "Huda Mustafa",
+                    rate: "3.9",
+                  ),
 
-               ServicesWidget(
-                   avatar: "assets/avatar.png",
-                   imageURL: "assets/img3.png",
-                   jobTitle: "Musician",
-                   bio: "I like Music So Much",
-                   name: "Basem Moh",
-                   rate: "4.0"
-               ),
-             ],
-           )
+                  ServicesWidget(
+                    avatar: "assets/avatar.png",
+                    imageURL: "assets/img3.png",
+                    jobTitle: "Musician",
+                    bio: "I like Music So Much",
+                    name: "Basem Moh",
+                    rate: "4.0",
+                  ),
+                ],
+              ),
+            ),
+            SectionWidget(title: "Best Bookings"),
 
           ],
         ),
