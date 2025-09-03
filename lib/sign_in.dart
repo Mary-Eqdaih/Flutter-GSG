@@ -76,7 +76,7 @@ class SignIn extends StatelessWidget {
                       ),
                     ),
                     onPressed: () {
-                      Navigator.pushReplacementNamed(context, Routes.signUp);
+                      Navigator.pushReplacementNamed(context, Routes.signUp,);
                     },
                   ),
 
@@ -97,10 +97,12 @@ class SignIn extends StatelessWidget {
 
   void _login(BuildContext context) {
     if (_formKey.currentState!.validate()) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => Home(email: emailcont.text)),
-      );
+      // Navigator.pushReplacement(
+      //   context,
+      //   MaterialPageRoute(builder: (context) => Home(email: emailcont.text)),
+      // );
+
+      Navigator.pushReplacementNamed(context, Routes.home,arguments: emailcont.text);
     } else {
       showSnackBar(context, "Enter Valid Credentials");
     }
