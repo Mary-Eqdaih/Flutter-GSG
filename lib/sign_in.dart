@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gsg/Widgets/CustomTextField.dart';
-import 'package:flutter_gsg/sign_up.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'Routes/routes.dart';
-
-import 'home.dart';
 
 class SignIn extends StatelessWidget {
   SignIn({super.key});
@@ -32,7 +28,8 @@ class SignIn extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Center(
-            child: Form(key: _formKey,
+            child: Form(
+              key: _formKey,
               child: Column(
                 children: [
                   Image.asset("assets/sign_in2.png", width: 300, height: 300),
@@ -76,7 +73,7 @@ class SignIn extends StatelessWidget {
                       ),
                     ),
                     onPressed: () {
-                      Navigator.pushReplacementNamed(context, Routes.signUp,);
+                      Navigator.pushReplacementNamed(context, Routes.signUp);
                     },
                   ),
 
@@ -102,7 +99,11 @@ class SignIn extends StatelessWidget {
       //   MaterialPageRoute(builder: (context) => Home(email: emailcont.text)),
       // );
 
-      Navigator.pushReplacementNamed(context, Routes.home,arguments: emailcont.text);
+      Navigator.pushReplacementNamed(
+        context,
+        Routes.home,
+        arguments: emailcont.text,
+      );
     } else {
       showSnackBar(context, "Enter Valid Credentials");
     }
