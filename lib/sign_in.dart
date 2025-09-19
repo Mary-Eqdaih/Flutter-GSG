@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gsg/Widgets/CustomTextField.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'Routes/routes.dart';
 
-class SignIn extends StatelessWidget {
+class SignIn extends StatefulWidget {
   SignIn({super.key});
+  static const String userCredentialsKey = 'userCredentials';
+  @override
+  State<SignIn> createState() => _SignInState();
+}
+
+class _SignInState extends State<SignIn> {
   TextEditingController emailcont = TextEditingController();
+
   TextEditingController passwordcont = TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
+
   // final keyword let me know the type of the var using type inference
   @override
   Widget build(BuildContext context) {
@@ -92,13 +102,15 @@ class SignIn extends StatelessWidget {
     );
   }
 
-  void _login(BuildContext context) {
+  void _login(BuildContext context)async {
     if (_formKey.currentState!.validate()) {
+
       // Navigator.pushReplacement(
       //   context,
       //   MaterialPageRoute(builder: (context) => Home(email: emailcont.text)),
       // );
-
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString(SignIn.userCredentialsKey, emailcont.text);
       Navigator.pushReplacementNamed(
         context,
         Routes.home,
@@ -119,4 +131,6 @@ void showSnackBar(BuildContext context, String text) {
       duration: Duration(milliseconds: 500),
     ),
   );
+
+
 }

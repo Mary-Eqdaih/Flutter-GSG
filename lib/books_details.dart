@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gsg/Data/books_model.dart';
-import 'package:flutter_gsg/Routes/routes.dart';
+
 
 class BookDetails extends StatefulWidget {
   const BookDetails({super.key});
@@ -27,7 +27,7 @@ class _BookDetailsState extends State<BookDetails> {
               ),
               Text("Release Date : ${model.date}"),
               SizedBox(height: 20),
-              Text(model.description),
+              Text(model.description,textAlign: TextAlign.center,),
             ],
           ),
         ),

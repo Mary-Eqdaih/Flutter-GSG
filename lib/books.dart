@@ -55,3 +55,8 @@ class _BooksState extends State<Books> {
     setState(() {});
   }
 }
+//data['code'] → 200 (int)
+//
+// data['status'] → "OK" (String)
+//
+// data['data'] → the big list of surahs ([...])

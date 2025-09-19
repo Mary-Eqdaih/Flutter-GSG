@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../Data/freelancers_model.dart';
 import '../Data/services_model.dart';
+import '../sign_in.dart';
 import 'FreelancersWidget.dart';
 import 'SectionWidget.dart';
 import 'ServicesWidget.dart';
@@ -13,6 +15,19 @@ class HomeWidget extends StatefulWidget {
 }
 
 class _HomeWidgetState extends State<HomeWidget> {
+  String? user;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUser();
+  }
+
+  Future<void> _loadUser() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() => user = prefs.getString(SignIn.userCredentialsKey));
+  }
+
   List<ServicesModel> services = [
     ServicesModel(
       avatar: "assets/avatar.png",
@@ -74,7 +89,7 @@ class _HomeWidgetState extends State<HomeWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final input = ModalRoute.of(context)?.settings.arguments as String?;
+
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -93,7 +108,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                     ),
                   ),
                   SizedBox(width: 5),
-                  Text("${input ?? "Guest"}", style: TextStyle(fontSize: 16)),
+                  Text(user ?? "Guest", style: TextStyle(fontSize: 16)),
                 ],
               ),
             ),

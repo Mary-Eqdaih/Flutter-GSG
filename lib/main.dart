@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gsg/Widgets/homeWidget.dart';
 import 'package:flutter_gsg/books.dart';
+import 'package:flutter_gsg/counter.dart';
 import 'package:flutter_gsg/freelacers_details.dart';
 import 'package:flutter_gsg/home.dart';
 import 'package:flutter_gsg/product_details.dart';
@@ -8,10 +9,18 @@ import 'package:flutter_gsg/service_details.dart';
 import 'package:flutter_gsg/sign_up.dart';
 import 'package:flutter_gsg/sign_in.dart';
 import 'package:flutter_gsg/test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'Routes/routes.dart';
 import 'books_details.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  // read docs for ensureInitialized to understand
+  // يتأكد انه قبل م يشتغل البرنامج انه كل الداتا الي فلتر محتاجها موجودة
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? savedUser = prefs.getString(SignIn.userCredentialsKey);
+
+
   runApp(
     MaterialApp(
       theme: ThemeData(
@@ -30,7 +39,7 @@ void main() {
         Routes.books: (context)=> Books(),
       },
       debugShowCheckedModeBanner: false,
-      home:Test(),
+      home:savedUser == null ? SignIn() : Home(),
     ),
   );
 }
